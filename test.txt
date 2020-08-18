@@ -1,0 +1,310 @@
+ '1110080': '宅易通'
+ '1140100': '新一贷'
+ '1140140': '金领通/薪易通'
+ '114014001': '金领通'
+ '114014002': '薪易通'
+ '1140150': '私信贷'
+ '1140160': '券易融'
+ '1140180': '保费贷'
+ '1140190': '房租贷'
+ '1140200': '联合贷'
+ '1140210': '商易通'
+
+ "{\"data\":{\"data\":{\"custManagerArray\":[{\"custManagerUmNo\":\"CHENYI024\",\"custManagerName\":\"chenyi\"}],\"perPageNum\":\"5\",\"totalNum\":\"1\",\"queryKey\":\"1\"},\"responseCode\":\"000000\",\"responseMsg\":\"success\"},\"responseCode\":\"000000\",\"responseMsg\":\"success\"}"
+
+ 
+ https://b-stg.pingan.com.cn/lum/hangyuan/hloanHBS/pages/Begin/index.html?channelId=two-bar-code&umNo=LS_HZ2_YYHZUAT4&saleManagerName=银银合作测试账号四&orgId=870010002&orgName=九江银行上饶分行&goodsName=undefined&bankCode=C&recNo=LS_HZ2_YYHZUAT4&cooperationAreaName=nM21wib%2Bbqxb2KGmJPYipNkgWTBRSi9aZlQteGOR8lxG%2BYxsFuyCh6HTrzHsGyxfvY9luPTcsj6f2hciSGzGzXgjesCUDIpSh4Nxbbze3Xtp6gNckZ805jXiwtErmuZ7nB0bYlErHgttq0EFWWPDJ%2BRyIqixJf8O6W4iMFJQYQU%3D&recType=LS_HZ2
+
+ {
+    custManagerName: '',
+    custManagerUmNo: ''
+  }
+
+v-show="marketerList.length>0"
+
+https://rmb-stg.pingan.com.cn/brmsd/loan/cust/brmsd-loan/clerk/channel/queryImageInfoList
+
+https://rmb-stg.pingan.com.cn/brmsd/loan/cust/brmsd-loan/clerk/channel/deleteWefilesByFileIdForAll
+
+
+"{\"data\":{\"imageList\":[{\"fileId\":\"Fecd1b95a80a248d49c90e98eda686aa3\",\"createTime\":\"2018-06-29 15:04:30\",\"fileName\":\"id1\",\"state\":\"2\",\"barcode\":\"KB002430006229\",\"loanNo\":\"2018062955653495rWbXGr\",\"doctype\":\"KB10\",\"recommenderUM\":\"HUBING767\",\"doccode\":\"KB10\"},{\"fileId\":\"F534a92ffeb94464181076395506d24cf\",\"createTime\":\"2018-06-29 15:04:35\",\"fileName\":\"id2\",\"state\":\"2\",\"barcode\":\"KB002430006229\",\"loanNo\":\"2018062955653495rWbXGr\",\"doctype\":\"KB10\",\"recommenderUM\":\"HUBING767\",\"doccode\":\"KB10\"},{\"fileId\":\"Fb2aced71bb1343a5a5753334156a65bf\",\"createTime\":\"2018-06-29 15:04:45\",\"fileName\":\"auth\",\"state\":\"2\",\"barcode\":\"KB002430006229\",\"loanNo\":\"2018062955653495rWbXGr\",\"doctype\":\"KBA0\",\"recommenderUM\":\"HUBING767\",\"doccode\":\"KBAC\"},{\"fileId\":\"F1d28fbf8fcac4c75a2f152a1e6e0fc0b\",\"createTime\":\"2018-06-29 15:04:51\",\"fileName\":\"Data_auth\",\"state\":\"2\",\"barcode\":\"KB002430006229\",\"loanNo\":\"2018062955653495rWbXGr\",\"doctype\":\"KBA0\",\"recommenderUM\":\"HUBING767\",\"doccode\":\"KBAJ\"}],\"barcode\":\"KB002430006229\"},\"responseCode\":\"000000\",\"responseMsg\":\"success\"}"
+
+
+//审批类节点
+STATUS_1000("1000","审批通过","审批通过"),
+STATUS_0045("0045","征信补件复核", "处理中"),
+STATUS_2000("2000","审批否决", "审批否决"),
+STATUS_0055("0055","贷款审计", "处理中"),
+STATUS_0020("0020","补件处理", "处理中"),
+STATUS_0070("0070","贷款风控审批", "处理中"),
+STATUS_0010("0010","信贷录入", "处理中"),
+STATUS_0025("0025","现场调查", "处理中"),
+STATUS_3000("3000","客户退件","处理中"),
+STATUS_0050("0050","贷款审批","处理中"),
+STATUS_0030("0030","质控检查","处理中"),
+STATUS_0040("0040","征信调查","处理中"),
+
+//预审节点
+STATUS_YCMQDBC("01","待补充材料", "待补充材料"),
+STATUS_YCMQZZ("02","预审中", "预审中"),
+STATUS_YCMQDBJ("03","需要更正材料", "需要更正材料"),
+STATUS_YCMQFJ("05","否决", "预审否决"),
+STATUS_YCMQWC("04","审核通过", "审核通过"),
+
+//面签节点
+STATUS_MQWC("2","面签完成","面签完成"),
+STATUS_MQFJ("0","面签否决","面签否决"),
+STATUS_MQYYCG("1","面签预约成功","面签预约成功"),
+STATUS_MQSX("3","面签失效","面签失效"),
+//出账节点
+STATUS_POING("PO_0","处理中","处理中"),
+STATUS_POCG("PO_1","放款成功","放款成功"),
+STATUS_POSB("PO_2","放款失败","放款失败");
+
+
+> n
+< {barCode: "KB002330004135", certId: "410105********0117", applySerialNo: "RL20180428001088", certType: "Ind01"}
+
+applyType
+
+
+是否选择保费贷：
+
+    'querySupplyInfo': '/brmsd/loan/cust/brmsd-loan/clerk/zj/channel/paperless/querySupplyInfo', //补充信息查询
+    'updateSupplyInfoOne' :'/brmsd/loan/cust/brmsd-loan/clerk/zj/channel/paperless/updateSupplyInfoOne', //补充信息保存
+    'updateSupplyInfoTwo': '/brmsd/loan/cust/brmsd-loan/clerk/zj/channel/paperless/updateSupplyInfoTwo', //补充信息保存
+    'updateSupplyInfoThree':'/brmsd/loan/cust/brmsd-loan/clerk/zj/channel/paperless/updateSupplyInfoThree', //补充信息保存
+
+邓陆萍
+
+bplustoken
+
+        { id: '1', name: '1年' },
+        { id: '2', name: '2年' },
+        { id: '3', name: '3年' },
+        { id: '4', name: '4年' },
+        { id: '5', name: '5年' },
+        { id: '6', name: '6年' },
+        { id: '7', name: '7年' },
+        { id: '8', name: '8年' },
+        { id: '9', name: '9年' },
+        { id: '10', name: '10年' },
+        { id: '11', name: '11年' },
+        { id: '12', name: '12年' },
+        { id: '13', name: '13年' },
+        { id: '14', name: '14年' },
+        { id: '15', name: '15年' },
+        { id: '16', name: '16年' },
+        { id: '17', name: '17年' },
+        { id: '18', name: '18年' },
+        { id: '19', name: '19年' },
+        { id: '20', name: '20年' },
+        { id: '21', name: '21年' },
+        { id: '22', name: '22年' },
+        { id: '23', name: '23年' },
+        { id: '24', name: '24年' },
+        { id: '25', name: '25年' },
+        { id: '26', name: '26年' },
+        { id: '27', name: '27年' },
+        { id: '28', name: '28年' },
+        { id: '29', name: '29年' },
+        { id: '30', name: '30年' }
+
+
+          onShow() {
+    console.log('app Index onShow')
+    var status = wx.getStorageSync('status')
+    console.log(status)
+    if (status === 'start') {
+      this.smLoan.loanAmt = ''
+      this.smLoan.onePayAmt = ''
+      this.smLoan.monthRate = ''
+      this.smLoan.loanTerm = ''
+      this.smLoan.loanTermName = ''
+      this.smLoan.loanTermIndex = ''
+      this.baseRate.loanAmt = ''
+      this.baseRate.monthRate = ''
+      this.baseRate.loanTerm = ''
+      this.baseRate.loanTermName = ''
+      this.baseRate.loanTermIndex = ''
+      this.baseAmt.loanAmt = ''
+      this.baseAmt.monthRate = ''
+      this.baseAmt.loanTerm = ''
+      this.baseAmt.loanTermName = ''
+      this.baseAmt.loanTermIndex = ''
+      this.loanTermList = []
+      for (var i = 1; i <= 30; i++) {
+        this.loanTermList.push({ id: i * 12 + '', name: i + ' 年' })
+      }
+      wx.clearStorage()
+    }
+  },
+
+  [
+  {
+    "title": "阿里云MVP携手cnodejs，寻找下一个MVP！专属服务、大咖交流、企业游学等你来！申请就送100元代金券！",
+    "href": "/topic/5beb95fbbe1b120abac59180"
+  },
+  {
+    "title": "服务器迁移至 aws 日本机房",
+    "href": "/topic/5bd4772a14e994202cd5bdb7"
+  },
+  {
+    "title": "Node 地下铁第七期「深圳站」线下沙龙邀约 - Node.js 新生态",
+    "href": "/topic/5baee8de9545eaf107b9c6f3"
+  },
+  {
+    "title": "构建一个多平台项目用 git submodule  还是 npm private package?",
+    "href": "/topic/5bf2f7c1be1b120abac5af91"
+  },
+  {
+    "title": "weex和react native 哪个更好用？",
+    "href": "/topic/5bee8798a05b0e0ae443bee5"
+  },
+  {
+    "title": "如何破译前端代码？",
+    "href": "/topic/5bf28a10e6481c5709f5d3b9"
+  },
+  {
+    "title": "Node.js初中高级全栈高清视频教程",
+    "href": "/topic/5bc000d015e4fd1923f48e3f"
+  },
+  {
+    "title": "Vuepress 搭建带评论功能的静态博客",
+    "href": "/topic/5bf04e4bbe1b120abac5a6ac"
+  },
+  {
+    "title": "nvm永久切换版本无效",
+    "href": "/topic/5bf2c9b9be1b120abac5af3b"
+  },
+  {
+    "title": "开发利器 Cloud Studio 插件市场正式上线 | 百万好礼等你来拿",
+    "href": "/topic/5bf2a256be1b120abac5ae9d"
+  },
+  {
+    "title": "在Node中，如何用子进程模块完成一个有交互的命令？",
+    "href": "/topic/5bf11eebe6481c5709f5cd5f"
+  },
+  {
+    "title": "LoopBack框架交流群组建或加入",
+    "href": "/topic/5bf0d719be1b120abac5a704"
+  },
+  {
+    "title": "获取二维码，小程序",
+    "href": "/topic/5ae3dd1cadea947348e75ed6"
+  },
+  {
+    "title": "mysql,一条sql单独执行耗时500ms，批量50条一起执行最慢的耗时5秒",
+    "href": "/topic/5bed5968a05b0e0ae443b9ac"
+  },
+  {
+    "title": "如何学好前端",
+    "href": "/topic/5bec3714a05b0e0ae443b366"
+  },
+  {
+    "title": "请教一下，oracledb模块连接oracle数据库的重连问题",
+    "href": "/topic/5bf25659be1b120abac5ac7a"
+  },
+  {
+    "title": "请教egg-mysql 报错 急",
+    "href": "/topic/5bf256c7e6481c5709f5d23c"
+  },
+  {
+    "title": "解答为什么'𣎴'.length输出2",
+    "href": "/topic/5bee75debe1b120abac5a17f"
+  },
+  {
+    "title": "请教下 vue的项目部署问题",
+    "href": "/topic/5bed6c77a05b0e0ae443b9ff"
+  },
+  {
+    "title": "6套经典node.js+vue项目实战视频教程",
+    "href": "/topic/5befe1b1be1b120abac5a592"
+  },
+  {
+    "title": "基于 nest.js 的微信公众平台 API  （开发中）",
+    "href": "/topic/5bf23e61e6481c5709f5d15e"
+  },
+  {
+    "title": "Sequelize  无关联查询",
+    "href": "/topic/5bed0f3ba05b0e0ae443b681"
+  },
+  {
+    "title": "Nodejs+koa2实战视频教程【87讲】--Koa2+Nodejs+MongoDb打造企业级CMS前后端全栈项目实战视频教程",
+    "href": "/topic/5b5e78f5673571454c633cea"
+  },
+  {
+    "title": "Web 安全漏洞之 XSS 攻击",
+    "href": "/topic/5bf21601e6481c5709f5d00f"
+  },
+  {
+    "title": "【网盘分享】Mongodb+Mongoose中高级教程涉及mongodb用户权限验证、Mongodb aggregate聚合管道（多集合关联查询）Mongoose入门实战",
+    "href": "/topic/5ba259a315e4fd1923f4891f"
+  },
+  {
+    "title": "2018年Nodejs Koa2 Typescript Eggjs Vue2最新教程资源网盘分享",
+    "href": "/topic/5b7f8a2c944cb8340c27e335"
+  },
+  {
+    "title": "有没有推荐前端原生js书本",
+    "href": "/topic/5beedcabbe1b120abac5a41a"
+  },
+  {
+    "title": "前端如何进阶全栈开发",
+    "href": "/topic/5b18a28557137f22415c49e9"
+  },
+  {
+    "title": "关于token的一些疑问",
+    "href": "/topic/5bf018a7be1b120abac5a63a"
+  },
+  {
+    "title": "【VIP视频网站项目】基于Nodejs的Express框架开发的VIP视频网站项目及源码分享",
+    "href": "/topic/5bb0bf6f37a6965f59051df3"
+  },
+  {
+    "title": "关于 SSO 单点注销， SSO如何通知子系统清除凭证？",
+    "href": "/topic/5b3e2e8c35342ab069061298"
+  },
+  {
+    "title": "【JavaScript 基础知识】一篇关于 JavaScript 一些知识点的总结 —— 持续更新",
+    "href": "/topic/5a62b395afa0a121784a8de0"
+  },
+  {
+    "title": "Electron视频教程_Electron+Vue跨平台桌面软件开发视频教程（收费啊--不贵一包烟钱-有试听）",
+    "href": "/topic/5b44291035342ab0690613d6"
+  },
+  {
+    "title": "浅谈前端错误处理",
+    "href": "/topic/5bef8800e6481c5709f5c9f0"
+  },
+  {
+    "title": "js中如何做原生的异步等待？或者说如何做一个异步回调？",
+    "href": "/topic/5beee897be1b120abac5a43a"
+  },
+  {
+    "title": "Nest.js 脚手架",
+    "href": "/topic/5becfd09be1b120abac5992b"
+  },
+  {
+    "title": "使用nodejs做的 ngrok   frp  内网穿透管理平台",
+    "href": "/topic/5bae03c537a6965f59051d4f"
+  },
+  {
+    "title": "node自动合成手机优酷缓存的小工具",
+    "href": "/topic/5bee84febe1b120abac5a21d"
+  },
+  {
+    "title": "请问,定时脚本启动egg框架,出现这个问题的原因是什么",
+    "href": "/topic/5bee3ea1be1b120abac59f0a"
+  },
+  {
+    "title": "【全文】狼叔：如何正确的学习Node.js",
+    "href": "/topic/5ab3166be7b166bb7b9eccf7"
+  }
+]
+
+Channel&refer
+
+"navigateToMiniProgramAppIdList": [
+    "wx31c001419d170121"
+  ]
