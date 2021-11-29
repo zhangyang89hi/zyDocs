@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="index.js"></script>
+</head>
+<body>
+    <!-- <svg width="100" height="100" style="overflow: visible" viewbox="-50 -100 100 100">
+        <circle cx="0" cy="0" r="50" fill="green">
+    </svg>
+    <div>
+        sss
+    </div> -->
+    <svg width="200" height="100" viewBox="0 0 100 100" style="outline: 2px solid red" preserveAspectRatio="xMidYMid slice">
+        <rect x=10 y=10 width=50 height=50 fill="green"/>
+    </svg>
+    <div id="div">
+        <p>请输入</p>
+        <input type="text" oninput="console.log(value)">
+        <button id="bt">确定</button>
+        <div>
+            <a href="https://www.baidu.com" target="_blank">百度</a>
+        </div>
+    </div>
+
+    <div class="main-wrapper" style="visibility: hidden;">
+        <div class="top-row">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+        <div class="center-row">
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+        </div>
+        <div class="bottom-row">
+            <div>7</div>
+            <div>8</div>
+            <div>9</div>
+        </div>
+    </div>
+    <div class="grid-box">
+        <div class="grid-item">1</div>
+        <div class="grid-item">2</div>
+        <div class="grid-item">3</div>
+        <div class="grid-item">4</div>
+        <div class="grid-item">5</div>
+        <div class="grid-item">6</div>
+        <div class="grid-item">7</div>
+        <div class="grid-item">8</div>
+    </div>
+</body>
+<script>
+    // x.dd = 2
+    // function()
+    // let
+    // length[3]
+    window.onload = function() {
+        var bt = document.getElementById('bt')
+        var div = document.getElementById('div')
+
+
+        bt.addEventListener('click', (e) => {
+            console.log('button:')
+            console.log(e.currentTarget)
+            console.log(e)
+            // e.stopPropagation()
+        }, {
+            capture: true,
+            once: false
+        })
+        div.addEventListener('click', (e) => {
+            console.log('div:')
+            console.log(e.currentTarget)
+            console.log(e)
+            e.stopPropagation()
+        }, {
+            capture: true,
+            once: false
+        })
+    }
+</script>
+<style>
+.main-wrapper {
+    height: 240px;
+    width: 240px;
+    border: 1px solid #000;
+}
+.main-wrapper > div {
+    height: 80px;
+    font-size: 24px;
+    line-height: 80px;
+    text-align: center;
+}
+.top-row {
+    /* display: flex;
+    display: -webkit-flex; */
+}
+.top-row > div {
+    margin: 0 auto;
+    flex: 1;
+    float: left;
+    width: 33.33%;
+}
+.top-row > div:first-child {
+    background-color:red;
+}
+.top-row > div:nth-child(2) {
+    background-color: orange;
+}
+.top-row > div:last-child {
+    background-color:yellow;
+}
+.center-row {
+    /* display: flex; */
+}
+.center-row > div {
+    margin: 0 auto;
+    flex: 1;
+    float: left;
+    width: 33.33%;
+}
+.center-row > div:first-child {
+    background-color: green;
+}
+.center-row > div:nth-child(2) {
+    background-color:cyan;
+}
+.center-row > div:last-child {
+    background-color: blue;
+}
+.bottom-row {
+    /* display: flex; */
+}
+.bottom-row > div {
+    margin: 0 auto;
+    flex: 1;
+    float: left;
+    width: 33.33%;
+}
+.bottom-row > div:first-child {
+    background-color:violet;
+}
+.bottom-row > div:nth-child(2) {
+    background-color: grey;
+}
+.bottom-row > div:last-child {
+    background-color: black;
+}
+
+.grid-box {
+    display: grid;
+    height: 400px;
+    grid-template-columns: repeat(3, 100px);
+    grid-template-rows: repeat(auto-fill, 70px);
+    justify-content: space-between;
+    align-content: space-between;
+    /* place-items: center; */
+    /* place-content: center; */
+
+}
+.grid-item {
+    border: 1px solid;
+    /* place-self: stretch; */
+}
+.grid-item:nth-child(1) {
+    grid-column: 1 / 3;
+}
+.grid-item:nth-child(2) {
+    grid-column: 3;
+    grid-row: 1 / span 3;
+}
+.grid-item:nth-child(8) {
+    /* grid-column: 3 / 4; */
+}
+</style>
+
+</html>

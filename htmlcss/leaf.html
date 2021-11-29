@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>Document</title>
+</head>
+<body>
+    <div class="test-div">
+        <div class="device">device is up.</div>
+    </div>
+    <div class="base-div">
+        x
+        <span>base source</span>
+    </div>
+    <div style="display: none;">
+        <div class="box">
+            <div></div>
+        </div>
+    </div>
+    <div class="pec-list">
+        <div class="pec-list-head">姓名</div>
+        <input class="pec-list-body" type="text" placeholder="请输入中文">
+        <div class="pec-list-foot">请选择</div>
+        <img src="../pictures/bg1.jpg" alt="">
+    </div>
+    <div class="triangle"></div>
+    <div class="triangle2"></div>
+    <ul class="book" style="display: none;">
+        <li class="page" num="4">
+            <div class="page-back" onclick="turnBack(event)"><img src="../pictures/banner-1.png" alt=""></div>
+            <div class="page-front" onclick="turnFront(event)"><img src="../pictures/banner-2.jpg" alt=""></div>
+        </li>
+        <li class="page" num="3">
+            <div class="page-back" onclick="turnBack(event)"><img src="../pictures/banner-x.jpg" alt=""></div>
+            <div class="page-front" onclick="turnFront(event)"><img src="../pictures/banner-y.jpg" alt=""></div>
+        </li>
+        <li class="page" num="2">
+            <div class="page-back" onclick="turnBack(event)"><img src="../pictures/bg1.jpg" alt=""></div>
+            <div class="page-front" onclick="turnFront(event)"><img src="../pictures/bg2.jpg" alt=""></div>
+        </li>
+        <li class="page" num="1">
+            <div class="page-back" onclick="turnBack(event)"><img src="../pictures/P1.jpg" alt=""></div>
+            <div class="page-front" onclick="turnFront(event)"><img src="../pictures/P2.jpg" alt=""></div>
+        </li>
+    </ul>
+</body>
+<script>
+    function turnBack(e) {
+        console.log('turnBack:')
+        const pageBack = e.currentTarget.parentElement
+        console.log(pageBack)
+        if (pageBack.previousElementSibling) {
+            pageBack.previousElementSibling.style.zIndex = 0
+        }
+        // pageBack.style.zIndex = 1
+        // if (pageBack.previousElementSibling) {
+        //     pageBack.previousElementSibling.style.zIndex = 0
+        //     if (pageBack.previousElementSibling.previousElementSibling) {
+        //         pageBack.previousElementSibling.previousElementSibling.style.zIndex = -1
+        //     }
+        // }
+        // if (pageBack.nextElementSibling) {
+        //     pageBack.nextElementSibling.style.zIndex = 0
+        //     if (pageBack.nextElementSibling.nextElementSibling) {
+        //         pageBack.nextElementSibling.nextElementSibling.style.zIndex = -1
+        //     }
+        // }
+        pageBack.classList.remove('turn-front')
+        pageBack.classList.add('turn-back')
+    }
+    function turnFront(e) {
+        console.log('turnFront:')
+        const pageFront = e.currentTarget.parentElement
+        console.log(pageFront)
+        pageFront.style.zIndex = pageFront.getAttribute('num')
+        // pageFront.style.zIndex = 1
+        // if (pageFront.nextElementSibling) {
+        //     pageFront.nextElementSibling.style.zIndex = 0
+        //     if (pageFront.nextElementSibling.nextElementSibling) {
+        //         pageFront.nextElementSibling.nextElementSibling.style.zIndex = -1
+        //     }
+        // }
+        // if (pageFront.previousElementSibling) {
+        //     pageFront.previousElementSibling.style.zIndex = 0
+        //     if (pageFront.previousElementSibling.previousElementSibling) {
+        //         pageFront.previousElementSibling.previousElementSibling.style.zIndex = -1
+        //     }
+        // }
+        pageFront.classList.remove('turn-back')
+        pageFront.classList.add('turn-front')
+    }
+</script>
+<style>
+
+    html body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .book {
+        position: relative;
+        margin-left: 300px;
+        width: 300px;
+        height: 400px;
+        /* overflow: hidden; */
+        /* border: black solid 1px; */
+    }
+    .book img {
+        width: 300px;
+        height:400px;
+    }
+    .page {
+        position: absolute;
+        width: 300px;
+        height:400px;
+        /* visibility: hidden; */
+    }
+    /* .page:last-child {
+        visibility:visible;
+    } */
+    .page-front {
+        /* width: 300px;
+        height:400px; */
+        position: absolute;
+        transform: translateZ(1px);;
+        /* left: 0;
+        top: 0; */
+    }
+    .page-back {
+        /* width: 300px;
+        height:400px; */
+        /* z-index:-1; */
+        position: absolute;
+        /* left: 0;
+        top: 0; */
+        transform: rotateY(180deg);
+    }
+    .turn-front {
+        transform-style: preserve-3d;
+        transform-origin: left center;
+        animation: turn-front 2s linear forwards;
+    }
+    @keyframes turn-front {
+        0% { transform: perspective(5000px) rotateY(0deg);}
+        /* 50% { transform: rotateY(90deg);} */
+        100% { transform: perspective(5000px) rotateY(-180deg);}
+    }
+    .turn-back {
+        transform-style: preserve-3d;
+        transform-origin: left center;
+        animation: turn-back 2s linear forwards;
+    }
+    @keyframes turn-back {
+        0% { transform: perspective(5000px) rotateY(-180deg);}
+        /* 50% { transform: rotateY(90deg);} */
+        100% { transform: perspective(5000px) rotateY(0deg);}
+    }
+
+    .test-div {
+        position: relative;
+        border: 1px solid;
+        width: 100px;
+        height: 100px;
+    }
+    .device {
+        position: absolute;
+        opacity: 0;
+        width: 50%;
+        height: 50%;
+        /* visibility: hidden; */
+        transition: opacity 1s ease;
+        background-color: coral;
+    }
+    .device:hover {
+        visibility: visible;
+        opacity: 1;
+    }
+    .device::first-letter {
+        font-weight: 800;
+        color: red;
+    }
+    .base-div {
+        height: 50px;
+    }
+    .base-div span {
+        /* font-size: 30px; */
+    }
+    .box {
+        overflow: hidden;
+        background-color: lightblue;
+    }
+    .box > div {
+        margin: 50%;
+    }
+
+    .pec-list {
+        /* display: flex;
+        flex-direction: row; */
+        width: 100%;
+    }
+    .pec-list-head {
+        width: 50px;
+        display: inline-block;
+    }
+    .pec-list-body {
+        /* float: left; */
+        display: inline-block;
+        flex: 1;
+        /* width: auto; */
+    }
+    .pec-list-foot {
+        /* float: right; */
+        width: 100px;
+        display: inline-block;
+    }
+    .triangle {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        margin: 50px;
+    }
+    .triangle::before {
+        position: absolute;
+        content: '';
+        top: -20px;
+        left: 30px;
+        /* border-top: 20px solid rgb(22, 233, 163); */
+        border-bottom: 20px solid rgb(0, 0, 0);
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+    }
+    .triangle::after {
+        position: absolute;
+        content: '';
+        top: -19px;
+        left: 30px;
+        /* border-top: 18px solid rgb(255, 255, 255); */
+        border-bottom: 20px solid rgb(255, 255, 255);
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+    }
+    .triangle2 {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        margin: 50px;
+    }
+    .triangle2::before {
+        position: absolute;
+        content: '';
+        top: 30px;
+        left: -40px;
+        border-width: 20px;
+        border-style: solid;
+        border-color: transparent #000 transparent transparent;
+    }
+    .triangle2::after {
+        position: absolute;
+        content: '';
+        top: 30px;
+        left: -39px; 
+        border-width: 20px;
+        border-style: solid;
+        border-color: transparent #fff transparent transparent;
+    }
+</style>
+</html>

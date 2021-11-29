@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../javascript/lib/zrender.js"></script>
+</head>
+<body>
+    <ul>
+        <li style="display:none;">
+            <canvas id="mouse" width="400" height="400"></canvas>
+        </li>
+        <li style="display:none;">
+            <canvas id="solar" width="400" height="400"> </canvas>
+        </li>
+        <li class="draw-circle" style="display: none;">
+            <canvas id="circle" width="250" height="250"></canvas>
+        </li>
+        <li>
+            <!-- <canvas id="pie" width="400" height="300"></canvas> -->
+        </li>
+        <li>
+            <div id='rect'></div>
+        </li>
+    </ul>
+</body>
+<script>
+    function drawCircle() {
+        const circle = document.getElementById('circle')
+        const ctx = circle.getContext('2d')
+
+        // circle.style.width = circle.width + 'px';
+        // circle.style.height = circle.height + 'px';
+
+        // circle.width = 500
+        // circle.height = 500
+        console.log(circle.getBoundingClientRect())
+        // ctx.scale(2,2)
+
+        ctx.arc(100, 100, 100, 0, Math.PI*1.5)
+        ctx.stroke()
+        ctx.fillStyle="red"
+        ctx.beginPath()
+        ctx.moveTo(100,100)
+        ctx.lineTo(100, 0)
+        ctx.lineTo(200, 100)
+        ctx.closePath()
+        ctx.stroke()
+        ctx.fill()
+        ctx.font="30px Arial"
+        ctx.fillText("shang hai", 0, 220)
+    }
+    drawCircle() 
+    // 动画
+    var step = 0;
+    var start = 0;
+    (function animate(timestamp) {
+        // console.log(timestamp)
+        // if (timestamp - start >= 50) {
+            // console.log(step)
+            // start = timestamp
+            const circle = document.querySelector('#circle');
+            circle.style.left = `${step++}px`;
+            if (step >  240) {
+                step = 0
+            }
+        // }
+        if (timestamp < 5000 || !timestamp) {
+            window.requestAnimationFrame(animate);
+        }
+    })()
+
+    const options = {
+        desc: '自定义图形',
+        data: [{
+            name: 'A',
+            value: 0.3
+        }, {
+            name: 'B',
+            value: 0.7
+        }],
+        x: '',
+        y: ''
+    }
+    function redrawTree(options) {
+        const dom = document.getElementById('pie')
+        const ctx = dom.getContext('2d')
+        let ratio = window.devicePixelRatio
+        let scale = 1/ratio
+        dom.addEventListener('mousemove', (e) => {
+            console.log(e)
+            drawPie(ctx, options, e)
+        })
+        drawPie(ctx, options)
+    }
+    function drawPie(ctx, options, e) {
+        const ratio = options.data[0].value
+        ctx.strokeRect(50, 50, 300, 200)
+        ctx.moveTo(250, 150)
+        ctx.arc(250, 150, 75, 0, 2*ratio*Math.PI)
+        ctx.closePath()
+        ctx.fillStyle = '#000000'
+        ctx.fill()
+        ctx.stroke()
+        if (e && ctx.isPointInPath(e.offsetX, e.offsetY)) {
+            ctx.fillStyle = '#5f0a0a'
+            ctx.fill()
+        }
+        ctx.beginPath()
+        ctx.moveTo(250, 150)
+        ctx.arc(250, 150, 75, 2*ratio*Math.PI, 0)
+        ctx.closePath()
+        ctx.fillStyle = '#000000'
+        ctx.fill()
+        ctx.stroke()
+        if (e && ctx.isPointInPath(e.offsetX, e.offsetY)) {
+            ctx.fillStyle = '#184981'
+            ctx.fill()
+        }
+        ctx.beginPath()
+        ctx.arc(250, 150, 45, 0, 2*Math.PI)
+        ctx.fillStyle = '#FFFFFF'
+        ctx.fill()
+        ctx.stroke()
+    }
+    // redrawTree(options)
+
+    // 
+    function drawRect() {
+        let dom = document.getElementById('rect')
+        console.log(dom)
+        let zr = zrender.init(dom, {
+            renderer:'canvas',
+            width:'500',            //画布宽度
+            height:'300'            //画布高度
+        })
+
+        let rect = new zrender.Rect({
+            // position:[0,0],  //平移距离
+            style:{
+                fill:'white',    //填充颜色
+                stroke:'black',    //描边颜色
+
+                // text:'图形文字',    //文字
+                // textFill:'#333',   //文字颜色
+                // fontSize:12,       //文字大小
+                // transformText:true  //字体跟随变换效果
+                text:'图形文字',             //文字
+                textFill:'#333',             //文字颜色
+                fontSize:48,                 //文字大小
+                // fontFamily:'',            //字体
+                fontStyle:'normal',          //字形
+                fontWeight:'normal',         //加粗
+                textStroke:'black',         //文字描边
+                textWidth:10,                 //字体线宽
+                textHeight:48,               //字体高度
+                textLineWidth:6,             //字体描边线宽
+                textLineHeight:48,           //字体行高
+                textPosition:'bottom',       //字体位置
+                textPadding:[0,0,0,0],       //文字内边距
+                transformText:true           //字体跟随变换效果
+            },
+            shape:{
+                x:0,             //x,y代表坐标
+                y:0,
+                width:200,
+                height:100,
+                r:[3]            //圆角
+            },
+            // z:1                  //层次，大的会覆盖小的
+        })
+        // zr.on('click', function(e) {
+        //     console.log(e)
+        //     console.log('点击了矩形')
+        // })
+        zr.add(rect)
+        let text = new zrender.Text({
+            style: {
+                text: '这是一段' + '\n' + '文字',
+                textBackgroundColor:'red',     //包围盒背景
+                textBorderColor:'blue',         //包围盒描边颜色
+                textBorderWidth:2,             //包围盒描边线宽
+                textPadding:[10,20,10,20]      //文字内边距，同css Padding
+            }
+        })
+        text.on('click', function() {
+            console.log('点击了text')
+        })
+        // zr.add(text)
+        // console.log(text.getBoundingRect())
+
+        // rect.animate('shape',true)
+        // .when(1000, {x:100})
+        // .when(2000,{x:0})
+        // .when(3000,{y:100})
+        // .when(4000,{y:0})
+        // .start();
+
+        // rect.animateTo({
+        //     shape: {
+        //         width: 300
+        //     },
+        //     style: {
+        //         fill: 'blue'
+        //     },
+        //     position:[10,10]
+        // }, 1000, 1000, 'cubicOut', function () {    
+        //     console.log('done')
+        // })
+        // setTimeout(function() {
+        //     rect.attr({
+        //     style:{
+        //         fill:'yellow'
+        //     },
+        //     // shape:{
+        //     //     width:300,
+        //     //     height:200
+        //     // }
+        // })
+        // }, 2000)
+        
+    }
+    drawRect()
+
+    function drawSolar() {
+        const sun = new Image()
+        const earth = new Image()
+        const moon = new Image()
+        sun.src = 'https://mdn.mozillademos.org/files/1456/Canvas_sun.png'
+        earth.src = 'https://mdn.mozillademos.org/files/1429/Canvas_earth.png'
+        moon.src = 'https://mdn.mozillademos.org/files/1443/Canvas_moon.png'
+        const dom = document.getElementById('solar')
+        console.log(dom.getBoundingClientRect())
+        const ctx = dom.getContext('2d')
+        var count = 0
+        sun.onload = function() {
+            ctx.drawImage(sun, 0, 0, 400, 400)
+            ctx.strokeStyle = '#fff'
+            ctx.beginPath()
+            ctx.arc(200, 200, 150, 0, 2*Math.PI)
+            ctx.stroke()
+
+            ;(function animate(t) {
+                const n = Math.round(t*60/1000)
+
+                const sunX = 200
+                const sunY = 200
+                const sunR = 150
+                ctx.drawImage(sun, 0, 0, 400, 400)
+                ctx.strokeStyle = '#fff'
+                ctx.beginPath()
+                ctx.arc(sunX, sunY, sunR, 0, 2*Math.PI)
+                ctx.stroke()
+
+                const earthX=sunX+sunR*Math.cos(n*Math.PI/1800)
+                const earthY=sunY+sunR*Math.sin(n*Math.PI/1800)
+                const earthR=50
+                ctx.drawImage(earth, earthX-15, earthY-15)
+                ctx.strokeStyle = '#fff'
+                ctx.beginPath()
+                ctx.arc(earthX, earthY, earthR, 0, 2*Math.PI)
+                ctx.stroke()
+
+                const moonX = earthX+earthR*Math.cos(n*Math.PI/180)
+                const moonY = earthY+earthR*Math.sin(n*Math.PI/180)
+                ctx.drawImage(moon, moonX-3, moonY-3)
+
+                window.requestAnimationFrame(animate)
+            })()
+        }
+
+    }
+    // drawSolar()
+
+    function drawMouse() {
+        const dom = document.getElementById('mouse')
+        const ctx = dom.getContext('2d')
+        const m = {
+            x: dom.width / 2,
+            y: dom.height / 2
+        }
+        const a = [] // 
+        const ar = 150
+        const theta = 2*Math.PI/180
+        console.log(theta)
+        dom.addEventListener('mousemove', function(e) {
+            m.x = e.offsetX
+            m.y = e.offsetY
+        })
+        function gc() {
+            var s = '0123456789ABCDEF'
+            var r = '#'
+            for (let i=0; i<6; i++) {
+                r+=s[Math.floor(Math.random()*16)]
+            }
+            return r
+        }
+        function obc(r, r0, r1) {
+            this.r = r
+            this.r0 = r0
+            this.r1 = r1
+            this.color = gc()
+            this.dr = function() {
+                ctx.beginPath()
+                ctx.strokeStyle = this.color
+                ctx.arc(m.x, m.y, this.r, this.r0, this.r1)
+                ctx.stroke()
+                this.r0 += theta
+                this.r1 += theta
+            }
+        }
+        function obl(r, r0, r1) {
+            this.r = r
+            this.r0 = r0
+            this.x = m.x
+            this.y = m.y
+            this.color = gc()
+            this.dr = function() {
+                ctx.beginPath()
+                ctx.strokeStyle = this.color
+
+                ctx.moveTo(this.x, this.y)
+                this.r0 += theta
+                this.r1 += theta
+                this.x = m.x+this.r*Math.cos(this.r0) 
+                this.y = m.y+this.r*Math.sin(this.r0)
+
+                ctx.lineTo(this.x, this.y)
+                ctx.stroke()
+                ctx.closePath()
+
+            }
+        }
+        function render() {
+            ctx.clearRect(0,0,dom.width, dom.height)
+            ctx.lineWidth = 4
+            // ctx.globalAlpha = 0.5
+            for (let i=0; i<30; i++) {
+                let r0 = 2*Math.PI*Math.random()
+                let r1 = r0 + 2*Math.PI/10
+                a[i] = new obl(Math.random()*ar, r0, r1)
+            }
+            a.forEach(function(item) {
+                item.dr()
+            })
+            
+        }
+        render();
+        (function animate() {
+            // ctx.clearRect(0,0,dom.width, dom.height)
+            ctx.fillStyle = "rgba(0,0,0,0.05)"
+            ctx.strokeStyle = "#000000"
+            ctx.beginPath()
+            ctx.rect(0,0, dom.width, dom.height)
+            ctx.stroke()
+            ctx.fill()
+
+            a.forEach(function(item) {
+                item.dr()
+            })
+            window.requestAnimationFrame(animate)
+        })()
+    }
+    // drawMouse()
+    function changeIgnore(group){
+        group._children.forEach((item) => {
+            if (item._children && item._children.length > 0) {
+                changeIgnore(item)
+            } else {
+                console.log(item)
+                item.ignore = false
+            }
+        })
+    }
+</script>
+<style>
+    ul, li {
+        margin: 0;
+        padding: 0;
+    }
+    li {
+        list-style: none;
+    }
+    .draw-circle {
+        position: relative;
+        height: 300px;
+    }
+    .draw-circle canvas {
+        position: absolute;
+        left: 0px;
+    }
+</style>
+</html>

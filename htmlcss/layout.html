@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="aside">
+        aside
+    </div>
+    <div class="section">
+        section
+        <div class="content">
+            <p class="head">head</p>
+        </div>
+        <div class="content">
+            <p class="main">main</p>
+        </div>
+        <div class="content">
+            <p class="foot">foot</p>
+        </div>
+    </div>
+    <div class="other">
+        
+        <div class="child">child</div>
+        <div class="child">child</div>
+        <div class="child">child</div>
+    </div>
+    <div class="fixed">
+        contain
+        <div>fixed div</div>
+    </div>
+</body>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    html, body {
+        /* height: 100%; */
+        width: 100%;
+    }
+    .aside {
+        width: 100px;
+        height: 400px;
+        /* height: 100%; */
+        margin-left: 20px;
+        float: left;
+        /* background: rgb(139, 214, 78); */
+        text-align: center;
+    }
+    .section {
+        height: 400px;
+        /* overflow: hidden; */
+        /* height: 100%; */
+        /* background: rgb(170, 54, 236); */
+        text-align: center;
+    }
+    p {
+        color: #f55;
+        background: lightyellow;
+        width: 200px;
+        line-height: 50px;
+        text-align: center;
+        margin: 30px;
+    }
+    .content {
+        overflow: hidden;
+    }
+
+    .other {
+        overflow: hidden;
+        border: 2px solid rgb(91, 243, 30);
+        width: 400px;
+    }
+    .child {
+        border: 2px solid rgb(233, 250, 84);
+        width:100px;
+        height: 100px;
+        float: left;
+    }
+    .child:last-child::after {
+        /* clear: both; */
+    }
+    .fixed {
+        width: 200px;
+        height: 100px;border: mediumaquamarine 1px solid;
+        transition: transform 3s ease;
+        transform: translateX(50px);
+        background-color: moccasin;
+
+    }
+    .fixed:hover {
+        transform: translateX(50px) rotateX(360deg);
+    }
+    .fixed div {
+        position: fixed;
+        width: 100px;
+        height: 60px;
+        background-color: mistyrose;
+        left: 0;
+        top: 0;
+    }
+</style>
+
+</html>

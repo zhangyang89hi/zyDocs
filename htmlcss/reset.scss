@@ -1,0 +1,143 @@
+@charset "UTF-8";
+
+* {
+    @if $Compatible == true {
+        -moz-box-sizing: border-box;
+    }
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+body,
+button,
+code,
+dd,
+dl,
+fieldset,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+input,
+legend,
+menu,
+ol,
+p,
+pre,
+textarea,
+ul {
+    margin: 0;
+    padding: 0;
+}
+article,
+aside,
+details,
+footer,
+header,
+iframe,
+menu,
+nav,
+section {
+    display: block;
+}
+button,
+fieldset,
+iframe,
+img {
+    border: 0;
+}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//     font-size: 100%;
+//     font-weight: 400;
+// }
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+em,
+i {
+    font-style: normal;
+}
+
+li,
+ol,
+summary,
+ul {
+    list-style: none;
+}
+
+a,
+a:active,
+a:hover {
+    text-decoration: none;
+}
+
+body,
+button,
+html {
+    -webkit-text-size-adjust: none;
+}
+
+button,
+input,
+select,
+textarea {
+    -webkit-appearance: none;
+    font: inherit;
+}
+
+a,
+button,
+input,
+textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+mark {
+    background-color: transparent;
+}
+
+img {
+    max-width: 100%;
+    border: none;
+    vertical-align: middle;
+}
+
+a:focus,
+button,
+button:focus,
+i:focus,
+img:focus,
+input,
+input:focus,
+li:focus,
+select,
+select:focus,
+span:focus,
+summary,
+textarea,
+textarea:focus {
+    outline: 0;
+}
+
+body {
+    font-family: $font-fy;
+    line-height: $font-lh;
+    color: $fontColor;
+    background-color: $body-bg;
+    @if($Unit != px) {
+        -webkit-user-select: none;
+    }
+    -webkit-overflow-scrolling: touch;
+    -webkit-font-smoothing: antialiased;
+}

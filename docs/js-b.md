@@ -14,13 +14,13 @@ title: js-b
 ```js
 var toString = Object.prototype.toString;
 toString.call(obj) = "[object Object]"
-toString.call(Array) = "[object Array]"
-toString.call(Date) = "[object Date]"
-toString.call(RegExp) = "[object RegExp]"
+toString.call(array) = "[object Array]"
+toString.call(date) = "[object Date]"
+toString.call(regExp) = "[object RegExp]"
 toString.call(func) = "[object Function]"
 toString.call(null) = "[object Null]"
 
-toString.call(ArrayBuffer) = "[object ArrayBuffer]"
+toString.call(arrayBuffer) = "[object ArrayBuffer]"
 toString.call(File) = "[object File]"
 toString.call(Blob) = "[object Blob]"
 
@@ -57,19 +57,38 @@ toString.call(Blob) = "[object Blob]"
 方法	适用范围	描述
 for..in	数组，对象	获取可枚举的实例和原型属性名
 Object.keys()	数组，对象	返回可枚举的实例属性名组成的数组
-Object.getPropertyNames()	数组，对象	返回除原型属性以外的所有属性（包括不可枚举的属性）名组成的数组
+Object.getOwnPropertyNames()	数组，对象	返回除原型属性以外的所有属性（包括不可枚举的属性）名组成的数组
 for..of	可迭代对象(Array, Map, Set, arguments等)	返回属性值
 
 
 ### 原型和原型链
-一. 概念
+1. 概念
 + 通过构造函数，new出的对象，新对象的__proto__指向构造函数的prototype
 + 所有函数的__proto__ 指上Function()的prototype
 + 非构造函数new出的对象({} new Object() 的prototype)的__proto__指向Object的prototype
 + Object的prototype的__proto__指向null
-二. 原型链
+2. 原型链
 
 
+
+
+3. new
+new 关键字会进行如下的操作:
++ 创建一个空的简单JavaScript对象（即{}）
++ 新对象的__proto__指向构造函数的prototype
++ 将新创建的对象作为constructor的上下文
++ 如果该函数没有返回对象，则返回this
+```js
+function myNew(Foo) {
+    let arg = Array.prototype.slice.call(arguments,1);
+    let f = {}; f.__proto__ = Foo.prototype;
+    // let f = Object.create(Foo.prototype)
+    Foo.prototype.constructor = Foo
+    let res = Foo.call(f, arg)
+    return res instanceof Object ? res : f
+}
+
+```
 ### call apply bind
 
 + apply 、 call 、bind 三者都是用来改变函数的this对象的指向的;
@@ -145,6 +164,56 @@ Function.prototype.bind = function(thisArg) {
 
 ```
 
+
+
+
+### 继承
+
+
+
+
+
+> 构造函数
+
+
+
+
+> 原型继承
+
+```js
+
+function inherit(subType, superType) {
+    subType.prototype.__proto__ = superType.prototype
+    subType.__proto__ = superType
+    subType.prototype.constructor = subType
+}
+
+function inherit(subType, superType) {
+    Object.setPrototypeOf(subType.prototype, superType.prototype)
+    Object.setPrototypeOf(subType, superType)
+}
+
+function inherit(subType, superType) {
+    subType.prototype = Object.create(superType.prototype, {
+        constructor: {
+            enumerable: false,
+            configurable: true,
+            writable: true,
+            value: subType
+        }
+    })
+    Object.setPrototypeOf(subType, superType)
+}
+
+```
+
+
+
+
+
+
+
+> 拷贝继承
 
 ### 封装
 
@@ -256,15 +325,6 @@ var Person = (function(window){
     return _person;
 })(window)
 ```
-
-
-### 继承
-
-> 构造函数
-
-> 原型继承
-
-> 拷贝继承
 
 
 ### Object
@@ -447,7 +507,67 @@ reader.addEventListener("loadend", function() {
 reader.readAsArrayBuffer(blob);
 ```
 
-#### 
+#### ArrayBuffer，TypedArray，DataView
+
+1. ArrayBuffer
+  >表示二进制数据的原始缓冲区，该缓冲区用于存储各种类型化数组的数据。 无法直接读取或写入 ArrayBuffer，但可根据需要将其传递到 TypedArray 或 DataView 对象 来解释原始缓冲区
+  > 属性
+  byteLength
+  slice(start, end)--实例方法
+  isView(param)---静态方法
+
+2. TypedArray 特定类型的视图
+    
+    TypedArray(ArrayBuffer, byteOffset=0, length?)
+    TypedArray(length)
+    TypedArray(typedArray)
+    TypedArray(普通的数组)
+
+3. DataView 混合类型的视图
+    map，slice, find, reduce等；
+    arr.set(formArr, [offset])--代替实现原来的concat方法。
+    arr.subarray([begin, end])--创建一个新的视图，值是原来数组截取的部分值；
+    of()---静态方法
+    
+```javascript
+// 默认小端字节
+
+var buf = new ArrayBuffer(32)
+
+new Int8Array(buf)
+new Uint8Array(buf)
+new Uint8ClampedArray()
+new Int16Array(buf)
+new Uint16Array(buf)
+new Int32Array(buf)
+new Uint32Array(buf)
+new Float32Array(buf)
+new Float64Array(buf)
+
+var buf = new ArrayBuffer(32)
+var dv = new DataView(buffer);
+
+dv.setInt8(byteOffset: number,value:number,littleEndian:boolean)
+dv.getInt8(byteOffset: number,littleEndian:boolean)
+dv.setInt8()
+dv.setUint8()
+dv.setUint16()
+dv.setInt32()
+dv.setUint32()
+dv.setFloat32()
+dv.setFloat64()
+
+```
+
+
+#### XMLHttpRequest  XHR2
+
+responseType
+请求            响应
+text            DOMString
+arraybuffer     ArrayBuffer
+blob            Blob
+document        Document
 
 
 

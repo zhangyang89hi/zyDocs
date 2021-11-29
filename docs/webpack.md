@@ -1,5 +1,9 @@
 
+### plugins
 
+uglifyjs-webpack-plugin
+webpack-parallel-uglify-plugin
+optimize-css-assets-webpack-plugin
 
 ### jquery 打包 编写LIbrary
 
@@ -159,3 +163,9 @@ import(/* webpackChunkName:'vendor' */'lodash').then(function(lodash) {
 })
 
 ```
+
+
+
+### plugins
+
+### loaders

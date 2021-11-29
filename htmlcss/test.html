@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Document</title>
+</head>
+<body>
+    <h4>test back</h4>
+    <a href="javascript:window.parent.location.reload()">返回上一页面刷新的是自己</a>
+    <div class="roteCircleA" style="display: none;">
+
+    </div>
+    <p lang="zh-cmn-Hans">
+        <strong lang="zh-cmn-Hans-CN">菠萝</strong>和
+        <strong lang="zh-cmn-Hant-TW">鳳梨</strong>其实是同一种水果。只是大陆和台湾称谓不同，且新加坡、马来西亚一带的称谓也是不同的，称之为
+        <strong lang="zh-cmn-Hans-SG">黄梨</strong>。
+    </p>
+    <div class="align">
+        xxA
+        <span>第二种写法xx</span>
+        <!-- <input type="text" placeholder="请输入"> -->
+        <div>xx译失</div>
+        <!-- <p>跳过了catch()方法</p> -->
+    </div>
+    <div class="vertical-align">x<img src="../pictures/bg1.jpg">
+    </div>
+
+    <div class="outer">
+        <div class="inner">
+          <div class="box">hello</div>
+        </div>
+      </div>
+
+      <div class="fu">
+        <div class="rectangle"></div>
+      </div>
+</body>
+
+<script>
+    // window.addEventListener('pageshow', function () {
+	// 	alert('pageshow event')
+    // });
+    // window.addEventListener('visibilitychange', function() {
+    //     if (document.hidden) {
+    //         console.log('page hide: ', new Date().getTime())
+    //     } else {
+    //         console.log('page show: ', new Date().getTime())
+    //     }
+    // })
+
+    function addClass(name, style) {
+        let styleSheet
+        for (let sheet of document.styleSheets) {
+            if (sheet.CSSInJS) {
+                styleSheet = sheet
+                break
+            }
+        }
+        if (!styleSheet) {
+            const styleCss = document.createElement('style')
+            document.head.appendChild(styleCss)
+            styleSheet = styleCss.sheet
+            styleSheet.CSSInJS = true
+        }
+        styleSheet.insertRule(`.${name}{${style}}`)
+    }
+    function converStyle(options={}) {
+        const keys = Object.keys(options)
+        let result = ''
+        keys.forEach(key => {
+            result += `${key}:${options[key]};`
+        })
+        return result
+    }
+    document.querySelector('h4').classList.add('red')
+    addClass('red', converStyle({
+        color: 'red',
+        'background-color': 'aliceblue'
+    }))
+</script>
+<style>
+    .align {
+        /* height: 50px; */
+        width: 100%;
+        border: 1px solid;
+        font-size: 20px;
+        /* line-height: 35px; */
+    } 
+    .align span {
+        font-size: 20px;
+        border: 1px solid;
+        vertical-align: baseline;
+    }
+    .align input {
+        width: 100px;
+    }
+    .align div {
+        display: inline-block;
+        font-size: 50px;
+        border: 1px solid;
+    }
+    .vertical-align {
+        background-color: burlywood;
+    }
+
+    h4::after {
+        content: '  content';
+    }
+    .roteCircleA {
+        position: relative;
+        margin-top: 50px;
+        margin-left: 50px;
+        width: 100px;
+        height: 100px;
+        /* border: 5px blue solid; */
+        border-radius: 50%;
+        background: white;
+        /* animation: waiting 1s infinite linear ;
+        -webkit-animation: waiting 1s infinite linear; */
+    }
+    .roteCircleA::after {
+        position: absolute;
+        content: '';
+        /* width: 100px;
+        height: 100px; */
+        border-radius: 50%;
+        animation: waiting 1s infinite linear;
+        -webkit-animation: waiting 1s infinite linear;
+        /* transform: scale(1.5); */
+        top: -5px;
+        bottom: -5px;
+        left: -5px;
+        right: -5px;
+        z-index: -1;
+        background: linear-gradient( rgba(0,0,0,0), rgba(0,0,255,1));
+        background: -webkit-linear-gradient( rgba(0,0,0,0), rgba(0,0,255,1));
+    }
+
+    .roteCircleB {
+        height: 50px;
+        display: inline-block;
+        padding: 1px;
+        line-height: 50px;
+        /* border-radius: 50%; */
+        width: 50px;
+        background: -webkit-linear-gradient( right, #fff 0%, #fff 100%), -webkit-linear-gradient(right, #99d6ee 0%, #6362e1 100%), -webkit-linear-gradient(right, red 0%, blue 100%);
+        background-clip: content-box, padding-box;
+        /* color: #0fd850;  */
+        margin-top: 50px;
+    }
+    @keyframes waiting {
+        0% {
+            transform: rotate(0deg);
+
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(-360deg);
+            -webkit-transform: rotate(-360deg);
+        }
+    }
+    @-webkit-keyframes waiting {
+        0% {
+            transform: rotate(0deg);
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    .outer {
+        width: 400px;
+        height: 100%;
+        background: blue;
+        margin: 0 auto;
+
+        display: flex;
+        align-items: center;
+    }
+
+    .inner {
+        position: relative;
+        width: 100%;
+        height: 0;
+        padding-bottom: 50%;
+        background: red;
+    }
+
+
+    
+
+    .box {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .fu {
+        border: 1px solid blue;
+        height: 200px;
+        width: 200px;
+    }
+    .rectangle {
+        border: 1px solid black;
+        /* width: 50%;
+        height: 0;
+        padding-bottom: 50%; */
+        width: 0.5vw;
+        height: 0.5vw;
+    }
+</style>
+</html>

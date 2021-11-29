@@ -1,0 +1,181 @@
+@charset "UTF-8";
+//---------------------- 核心参数 ----------------------
+$Compatible:false 	!default;		// true、false判断是否添加-moz-和-ms-
+
+//---------------------- mixin -----------------------
+@mixin prefix($prop, $args...){
+    @if $Compatible == true {
+        -moz-#{$prop}:$args;
+        -ms-#{$prop}:$args;
+    }
+    -webkit-#{$prop}:$args;
+    #{$prop}:$args;
+}
+
+// transform-origin
+@mixin origin($a:center, $b:center) {
+    @include prefix('transform-origin', $a $b);
+}
+// 位移
+@mixin translate($x, $y) {
+    @include prefix('transform', translate($x, $y));
+}
+// 旋转
+@mixin rotate($deg) {
+    @include prefix('transform', rotate($deg));
+}
+//缩放
+@mixin scale($x, $y:$x) {
+    @include prefix('transform', scale($x, $y));
+}
+// 完整变形 @include transform(0deg, 1, 1, x, y);
+@mixin transform($deg ,$scale-x, $scale-y, $x, $y) {
+    @include prefix('transform', rotate($deg) scale($scale-x, $scale-y) translate($x, $y));
+}
+// 过渡动画
+@mixin transition($val...) {
+    @include prefix('transition', $val);
+}
+// css3动画
+@mixin animation($val...) {
+    @include prefix('animation', $val);
+}
+//线性渐变 @include gradient(180deg,#FF8008,#FF5C08);
+@mixin gradient($deg, $starColor, $endColor) {
+    @if $Compatible == true {
+        background: -o-linear-gradient($deg, $starColor, $endColor);
+        background: -moz-linear-gradient($deg, $starColor, $endColor);
+    }
+    background: -webkit-linear-gradient($deg, $starColor, $endColor);
+    background: linear-gradient(90-$deg, $starColor, $endColor);
+}
+
+// flex box 布局
+@mixin flex-box {
+    display: -webkit-flex;
+    display: flex;
+}
+// 横竖排列方式: row | row-reverse | column | column-reverse
+@mixin flex-direction($value) {
+    @include prefix('flex-direction', $value)
+}
+// 是否换行: nowrap | wrap | wrap-reverse
+@mixin flex-wrap($value) {
+    @include prefix('flex-wrap', $value)
+}
+// 主轴对齐方式: flex-start | flex-end | center | space-between | space-around
+@mixin flex-justify($value) {
+    @include prefix('justify-content', $value);
+}
+// 侧轴对齐方式: flex-start | flex-end | center | baseline | stretch
+@mixin flex-items {
+    @include prefix('align-items', $value);
+}
+// 容器内容对齐方式: flex-start | flex-end | center | space-between | space-around | stretch
+@mixin flex-align($value) {
+    @include prefix('align-content', $value);
+}
+// 容器内容伸缩: auto (1 1 auto) 和 none (0 0 auto)
+@mixin flex($value) {
+    -webkit-flex: $value;
+    flex: $value;
+}
+// 用整数值来定义排列顺序，数值小的排在前面。可以为负值
+@mixin flex-order($val) {
+    -webkit-order: $val;
+    order: $val;
+}
+// 
+@mixin triangle($size, $color, $direction) {
+    height: 0;
+    width: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: $size / 2;
+    @if $direction == up {
+        border-bottom-color: $color;
+    } @else if $direction == right {
+        border-left-color: $color;
+    } @else if $direction == down {
+        border-top-color: $color;
+    } @else if $direction == left {
+        border-right-color: $color;
+    } @else {
+        // @error "Unknown direction #{$direction}."
+    }
+}
+
+//---------------------- % -----------------------
+
+%ell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+%table {display: table;table-layout: fixed;width: 100%;}
+%table-cell {display: table-cell;vertical-align: middle;}
+
+%clearfix:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+%flexbox {
+    @include flexbox();
+}
+%flex-1 {
+    @include flex(1);
+}
+%flex-direction-column {
+    @include flex-direction(column);
+}
+%flex-wrap {
+    @include flex-wrap(wrap);
+}
+%flex-justify-start {
+    @include flex-justify(flex-start);
+}
+%flex-justify-end {
+    @include flex-justify(flex-end);
+}
+%flex-justify-center {
+    @include flex-justify(center);
+}
+%flex-justify-between {
+    @include flex-justify(space-between);
+}
+%flex-justify-around {
+    @include flex-justify(space-around);
+}
+%flex-items-start {
+    @include flex-items(flex-start);
+}
+%flex-items-end {
+    @include flex-items(flex-end);
+}
+%flex-items-center {
+    @include flex-items(center);
+}
+%flex-items-baseline {
+    @include flex-items(baseline);
+}
+%flex-items-stretch {
+    @include flex-items(stretch);
+}
+%flex-align-end {
+    @include flex-align(flex-end);
+}
+%flex-align-center {
+    @include flex-align(center);
+}
+%flex-align-between {
+    @include flex-align(space-between);
+}
+%flex-align-around {
+    @include flex-align(space-around);
+}
+%flex-align-stretch {
+    @include flex-align(stretch);
+}
